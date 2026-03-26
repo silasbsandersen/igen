@@ -1,0 +1,93 @@
+---
+config:
+  layout: elk
+---
+classDiagram
+    class IMovementStrategy {
+        <<interface>>
+        +Scale(float factor)
+        +Move(Entity enemy)
+    }
+
+    class Down {
+        -float speed
+        +Scale(float factor)
+        +Move(Entity enemy)
+    }
+
+    class ZigZagDown {
+        -float speed
+        -float period
+        -float amplitude
+        -Dictionary~Entity, float~ startPositionsX
+        -Dictionary~Entity, float~ startPositionsY
+        +Scale(float factor)
+        +Move(Entity enemy)
+    }
+
+    class NoMove {
+        +Scale(float factor)
+        +Move(Entity enemy)
+    }
+    class IHitStrategy {
+        <<interface>>
+        +Hit(Enemy enemy)
+    }
+
+    class Enrage {
+        +Hit(Enemy enemy)
+    }
+
+    class IncreaseSpeedOnHit {
+        +Hit(Enemy enemy)
+    }
+
+    class NoHit {
+        +Hit(Enemy enemy)
+    }
+
+    class TeleportRandomPos {
+        +Hit(Enemy enemy)
+    }
+    class ISquadron {
+        <<interface>>
+        +CreateEnemies(...) EntityContainer~Enemy~
+    }
+
+    class LineSquadron {
+        +CreateEnemies(...) EntityContainer~Enemy~
+    }
+
+    class GridSquadron {
+        +CreateEnemies(...) EntityContainer~Enemy~
+    }
+
+    class VSquadron {
+        +CreateEnemies(...) EntityContainer~Enemy~
+    }
+    class Enemy {
+        -List~IHitStrategy~ hitStrategies
+        -IMovementStrategy movement
+        -int hitPoints
+        -bool isEnraged
+        +TakeHit()
+        +SetEnrage()
+        +Move()
+        +AddHitStrategy(IHitStrategy)
+        +Die()
+    }
+    IMovementStrategy <|.. Down
+    IMovementStrategy <|.. ZigZagDown
+    IMovementStrategy <|.. NoMove
+
+    IHitStrategy <|.. Enrage
+    IHitStrategy <|.. IncreaseSpeedOnHit
+    IHitStrategy <|.. NoHit
+    IHitStrategy <|.. TeleportRandomPos
+
+    ISquadron <|.. LineSquadron
+    ISquadron <|.. GridSquadron
+    ISquadron <|.. VSquadron
+    Enemy --> IMovementStrategy
+    Enemy --> IHitStrategy
+    ISquadron ..> Enemy
