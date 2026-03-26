@@ -1,0 +1,321 @@
+% =========================================================
+% Eksamensopgave i Interaktionsdesign
+% =========================================================
+\documentclass[12pt,a4paper]{article}
+
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage[danish]{babel}
+\usepackage{geometry}
+\usepackage{enumitem}
+\usepackage{parskip}
+\usepackage{booktabs}
+\usepackage{array}
+\usepackage{longtable}
+\usepackage{hyperref}
+
+\geometry{margin=2.5cm}
+
+\newcommand{\appname}{Nemlig.com (desktop)}
+
+\title{Eksamensopgave i Interaktionsdesign\\[0.5em]
+       \large \appname}
+\author{Silas Benjamin Steen Andersen}
+\date{27.\ marts 2026}
+
+% =========================================================
+\begin{document}
+\maketitle
+\vspace{0.5em}
+\noindent
+\textbf{Valgt applikation:} \appname\\
+\textbf{Afleveringsdato:} Fredag 27. marts 2026 kl. 16:00
+
+\newpage
+
+% =========================================================
+\section*{Spørgsmål 1: Brugere, opgaver og vigtige aspekter}
+
+Jeg har valgt at tage udgangspunkt i \textbf{Nemlig.com (desktop)}, et dansk online supermarked
+hvor brugeren kan udvælge dagligvarer og bestille levering til døren. I det følgende beskriver
+jeg mine antagelser om brugere, opgaver og kontekst. Antagelserne er ikke baseret på egen
+empirisk undersøgelse, men er et udgangspunkt, der i praksis bør afprøves og raffineres gennem
+user research (jf.\ Hornbæk et al., 2025, kap.\ 10).
+
+\subsection*{(a) Antagelser om brugere, opgaver og brugskontekst}
+Med inspiration fra kapitel 10 beskriver jeg målgruppen gennem kriterier for \textit{adfærd},
+\textit{teknologibrug} og \textit{demografi}.
+
+\textbf{Målgruppeprofil 1: ``Den travle børnefamilie''}
+\begin{itemize}[leftmargin=*,itemsep=0.2em]
+  \item \textbf{Adfærd (behavioral):} Handler dagligvarer 1--2 gange ugentligt, vil minimere
+        tid brugt på planlægning og indkøb, og prioriterer en stabil/forudsigelig levering.
+        Bruger ofte ``genkøb''/rutiner frem for at udforske nye varer.
+  \item \textbf{Teknologibrug (technological):} Har høj rutine i webshopping (fx andre
+        webshops), bruger pris-/tilbudsfiltre og forventer hurtig søgning, tydelig feedback og
+        let redigering af kurv.
+  \item \textbf{Demografi (demographical):} To voksne, mindst ét barn, mellem-høj
+        husstandsindkomst, bor i område hvor levering er tilgængelig.
+\end{itemize}
+
+\textbf{Målgruppeprofil 2: ``Tilbudsjægeren''}
+\begin{itemize}[leftmargin=*,itemsep=0.2em]
+  \item \textbf{Adfærd:} Sammenligner priser/tilbud, skifter mellem mærker og størrelser, og
+        bruger tid på at optimere kurven.
+  \item \textbf{Teknologibrug:} Komfortabel med filtre/sortering og mange faner; kan blive
+        påvirket af interface-elementer der fremhæver bestemte valg (fx ``mest populære'' eller
+        premium-alternativer).
+  \item \textbf{Demografi:} Kan være studerende eller husstand med stramt budget; geografisk
+        variation.
+\end{itemize}
+
+\textbf{Typiske opgaver} i Nemlig.com antages at være (1) finde specifikke varer via
+søgning/kategorier, (2) lægge varer i kurv og justere mængder, (3) vælge leveringstidspunkt og
+gennemføre checkout, (4) håndtere afvigelser såsom udsolgte varer/substitutioner, og
+(5) \textbf{Fokusopgave (til resten af opgaven):} Brugeren søger efter tre konkrete dagligvarer
+(fx ``mælk'', ``pasta'' og ``bananer'') og lægger én af hver i kurven via søgning og
+produktliste på desktop.
+
+\textbf{Brugskontekst} antages typisk at være hjemme foran computer i en hverdagssituation med
+tids- og opmærksomhedspres (multitasking), hvor fejl (fx forkert vare/størrelse/levering) har
+direkte konsekvenser i hverdagen.
+
+\subsection*{(b) Tre prioriterede aspekter af usability og user experience}
+På baggrund af (a) vurderer jeg følgende tre aspekter som vigtigst (prioriteret):
+
+\begin{enumerate}[leftmargin=*,itemsep=0.3em]
+  \item \textbf{Effektivitet (usability):} Brugeren skal hurtigt kunne nå fra ``jeg mangler
+        varer'' til en færdig ordre. \\
+        \textit{Mulig måling:} Tid på opgave, antal klik/handlinger, succesrate, samt en
+        KLM-analyse for en klart afgrænset opgave. \\
+        \textit{Udfordringer:} Tidsmålinger afhænger af erfaring og strategi (novice vs.\
+        rutineret), og KLM forudsætter en idealiseret ``øvet'' bruger.
+
+  \item \textbf{Fejlforebyggelse og recovery (usability):} Det skal være svært at lave fejl og
+        let at opdage/rette dem (fx mængder, substitutioner, leveringsvalg og skjulte
+        omkostninger). \\
+        \textit{Mulig måling:} Antal fejl og rettelser, hvor ofte brugere fortryder/retter, og
+        hvor hurtigt de kan rette en fejl uden at miste overblik. \\
+        \textit{Udfordringer:} Hvad der tæller som en ``fejl'' kan være tvetydigt (fx om en
+        substitution opleves som fejl eller acceptabelt alternativ).
+
+  \item \textbf{Oplevet kontrol og tillid (user experience):} Brugeren skal føle sig tryg ved
+        at systemet afspejler deres intentioner (hvad bestilles, hvornår leveres, og hvad koster
+        det samlet). \\
+        \textit{Mulig måling:} Spørgeskema-items om tillid/kontrol (fx 1--7), korte interviews
+        efter opgaven, samt observation af tøven/tilbageklik som indikator på usikkerhed. \\
+        \textit{Udfordringer:} UX-mål har ofte lav præcision og kan være påvirket af social
+        desirability bias og kontekst (fx om brugeren allerede kan lide brandet).
+\end{enumerate}
+
+\newpage
+% =========================================================
+\section*{Spørgsmål 2: Ekspertevaluering}
+
+\subsection*{(a) Valg af metode og diskussion}
+
+\textbf{Valgt metode: Heuristisk evaluering (Nielsen, 1994)}
+
+Jeg valgte heuristisk evaluering som ekspertmetode. I heuristisk evaluering gennemgår en
+evaluator systematisk et interface og bedømmer dets overensstemmelse med et sæt anerkendte
+designprincipper --- de såkaldte heuristikker. Jeg anvender Nielsens 10 heuristikker, da de er
+veldokumenterede og bredt anvendte i praksis samt pensum (Hornbæk et al., 2025).
+
+\textbf{Begrundelse:} Metoden er velegnet til dette projekt, fordi den kan gennemføres af én
+evaluator uden rekruttering af testdeltagere, kræver begrænset planlægningstid og giver konkrete
+og handlingsrettede fund. Da opgaven har en stram tidsramme og fokuserer på et klart afgrænset
+flow (søg og læg i kurv), matcher metodens effektivitet godt.
+
+\textbf{Fordele og ulemper sammenlignet med andre metoder:}
+\begin{itemize}[leftmargin=*,itemsep=0.3em]
+  \item \textit{Brugertest (tænke-højt):} Brugertest afslører reelle brugsvanskeligheder og
+        uventede adfærdsmønstre, som en ekspert kan overse. Til gengæld kræver det rekruttering,
+        mere tid og ekspertise i facilitering. Heuristisk evaluering er hurtigere, men risikerer
+        at misse kontekstspecifikke problemer (fx kognitiv overbelastning hos en travl
+        børnefamilie).
+  \item \textit{Cognitive walkthrough:} Denne metode analyserer ligesom heuristisk evaluering
+        opgaveflow uden brugere, men fokuserer specifikt på lærbarhed og den nye brugers
+        forklaringsmodel. Heuristisk evaluering er bredere og bedre til at fange generelle
+        designproblemer ud over lærbarhed.
+  \item \textit{Spørgeskema (fx SUS):} Spørgeskemaer er hurtige at administrere og giver
+        kvantitative data, men forudsætter adgang til rigtige brugere og indfanger ikke
+        årsagerne til problemer.
+  \item \textit{Feltstudie:} Et feltstudie giver rig kontekstuelt indblik (fx multitasking i
+        hjemmet), men er meget ressourcekrævende og svær at tilrettelægge på kort tid.
+\end{itemize}
+
+Samlet set er heuristisk evaluering et godt kompromis: det er mere struktureret og reproducerbart
+end uformel gennemgang, men hurtigere og billigere end brugertest. Den centrale ulempe er, at
+fund ikke er valideret af rigtige brugere og i højere grad afhænger af evaluatorens skøn.
+
+% ---------------------------------------------------------
+\subsection*{(b) Planlægning og gennemførelse}
+
+\textbf{Evalueringsopgaver:}
+
+Evalueringen bygger på den fokusopgave, der blev defineret i Spørgsmål 1:
+\begin{enumerate}[leftmargin=*,itemsep=0.2em]
+  \item Søg efter ``mælk'', vælg en mælk (fx 1 liter sødmælk) og læg den i kurven.
+  \item Søg efter ``pasta'', vælg én pasta og læg den i kurven.
+  \item Søg efter ``bananer'', vælg én pose bananer og læg dem i kurven.
+  \item Fjern én vare fra kurven.
+  \item Påbegynd checkout (klik ``Gå til kurv'' og fortsæt til leveringsvalgssiden).
+\end{enumerate}
+
+\textbf{Registrering af problemer:} For hvert trin i opgaveflowen sammenholdes det observerede
+interface med Nielsens 10 heuristikker. Problemer noteres med: (i) placering i flowet, (ii)
+hvilken heuristik der krænkes, (iii) beskrivelse af problemet, (iv) formodet årsag og (v) en
+alvorsgrad (0--4) efter Nielsens skala.
+
+\textbf{Praktisk gennemførelse:} Evalueringen udføres ved at navigere Nemlig.com i en
+opdateret Chrome-browser på en standard bærbar computer. Interfacet gennemgås to gange: først
+frit (orientering), derefter opgavebaseret (registrering). Alle fundne problemer noteres
+løbende i et regneark og konsolideres efterfølgende til den problemliste, der fremgår af
+Bilag~A.
+
+% ---------------------------------------------------------
+\subsection*{(c) Tre konkrete udfordringer}
+
+\begin{enumerate}[leftmargin=*,itemsep=0.4em]
+
+  \item \textbf{Evaluatoreffekten og manglen på reelle brugerperspektiver.}
+        Undervejs opdagede jeg, at det er svært at ``glemme'' sin faglige viden og forestille sig
+        en normal brugers perspektiv. Jeg lagde eksempelvis straks mærke til at søgeresultat\-siden
+        viste et utydeligt hierarki --- men det er uvist, om en rutineret bruger faktisk ville
+        opfatte dette som et problem, eller om de blot ville ignorere de irrelevante resultater.
+        Hornbæk et al.\ (2025) påpeger, at eksperter tenderer til at rapportere problemer, der
+        ikke generer rigtige brugere (``false positives''), og omvendt overser problemer, der kun
+        opstår i specifik brugskontekst. Udfordringen er grundlæggende: heuristisk evaluering er
+        aldrig en erstatning for faktisk brugerkontakt.
+
+  \item \textbf{Konsistent og retfærdig alvorsvurdering.}
+        Det viste sig vanskeligt at fastsætte alvorsgrader konsistent. Et problem kan forekomme
+        kritisk set fra én heuristik (fx ``æstetik og minimalistisk design''), men kun moderat
+        alvorligt set fra brugerens faktiske opgave (brugeren finder alligevel sin vare trods
+        støjen). Nielsens skala fra 0--4 er vejledende, men ikke algoritme\-baseret, og
+        alvors\-graden vil variere fra evaluator til evaluator. Hornbæk et al.\ (2025) beskriver,
+        at inter-rater-reliabilitet ved heuristisk evaluering typisk er lav, og at brug af
+        multiple evaluatorer er anbefalelsesværdigt. Da jeg er alene evaluator, er dette en
+        tydelig svaghed.
+
+  \item \textbf{Afgrænsning af hvad der udgør ét problem.}
+        Flere observerede problemer overlapper hinanden eller er symptomer på den samme
+        underliggende årsag (fx ``for mange elementer på produktkortet'' og ``for mange farver i
+        displayet'' kan begge skyldes manglende prioritering i det visuelle hierarki). Det er
+        uklart, om de skal registreres som ét problem eller flere. Hornbæk et al.\ (2025)
+        nævner, at klyngedannelse (``clustering'') af fundne problemer er en udbredt udfordring
+        ved heuristisk evaluering og påvirker den endelige problemlistes omfang og nytteværdi.
+
+\end{enumerate}
+
+% ---------------------------------------------------------
+\subsection*{(d) Opsummering af evalueringsresultater}
+
+Evalueringen identificerede fire centrale brugbarhedsproblemer på Nemlig.com. En fuldstændig
+problemliste med beskrivelse, årsagsanalyse og alvorsgrad fremgår af Bilag~A.
+
+De centrale fund er:
+
+\begin{itemize}[leftmargin=*,itemsep=0.3em]
+  \item \textbf{Overvældende søgeresultater (Alvorsgrad 3 -- Alvorlig):} En søgning på fx
+        ``mælk'' returnerer et meget stort antal resultater uden tydelig prioritering. Brugeren
+        præsenteres samtidig for reklamer og kampagnevarer imellem de organiske resultater,
+        hvilket gør det svært hurtigt at identificere den ønskede vare. Dette krænker heuristik
+        H8 (æstetik og minimalistisk design).
+
+  \item \textbf{For mange trin fra ``Gå til kurv'' til faktisk kurvoversigt (Alvorsgrad 2 --
+        Moderat):} Når brugeren klikker ``Gå til kurv'', mødes de af et unødvendigt antal
+        mellemliggende sider og pop-ups (fx ``har du glemt disse?''-forslag) inden de ser den
+        faktiske kurv. Dette strider mod H3 (brugerkontrol og -frihed) og H6 (genkendelse frem
+        for hukommelse), da brugeren skal holde rede på hvad de har lagt i kurven.
+
+  \item \textbf{Uoverskueligt produktkort med mange farver og knapper (Alvorsgrad 3 -- Alvorlig):}
+        Hvert produktkort indeholder en række handlingsknapper (tilbud, mærkeinfo, favorit,
+        hurtig-tilføj m.fl.) og bruger mange og varierende baggrundsfarver til at signalere
+        tilbud og kampagner. Det visuelle hierarki er svagt, og det primære handlingselement
+        (``læg i kurv'') fremstår ikke tydeligt adskilt fra sekundære elementer. Dette krænker
+        H8 og H4 (konsistens og standarder).
+
+  \item \textbf{Manglende tydelig feedback ved ``lagt i kurv'' (Alvorsgrad 2 -- Moderat):}
+        Når en vare lægges i kurven, er den visuelle bekræftelse lille og kortvarig. For en
+        bruger, der arbejder hurtigt eller er distraheret, er det uklart om handlingen lykkedes.
+        Dette krænker H1 (synlighed af systemstatus).
+\end{itemize}
+
+\newpage
+% =========================================================
+\appendix
+\section*{Bilag A: Problemliste fra heuristisk evaluering af Nemlig.com}
+
+\noindent\textbf{Interface:} Nemlig.com (desktop, Chrome). \textbf{Dato:} 25.\ marts 2026.\\
+\textbf{Evalueringsmetode:} Heuristisk evaluering (Nielsens 10 heuristikker).\\
+\textbf{Alvorsgrad:} 0 = Intet problem, 1 = Kosmetisk, 2 = Moderat, 3 = Alvorlig,
+4 = Katastrofalt.
+
+\vspace{1em}
+\begin{longtable}{>{\raggedright\arraybackslash}p{0.5cm}
+                  >{\raggedright\arraybackslash}p{2.5cm}
+                  >{\raggedright\arraybackslash}p{3.5cm}
+                  >{\raggedright\arraybackslash}p{3.5cm}
+                  >{\raggedright\arraybackslash}p{1.2cm}
+                  >{\centering\arraybackslash}p{0.8cm}}
+\toprule
+\textbf{\#} & \textbf{Heuristik} & \textbf{Beskrivelse af problem} &
+\textbf{Årsagsanalyse} & \textbf{Placering i flow} & \textbf{Alvors- grad} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{\#} & \textbf{Heuristik} & \textbf{Beskrivelse af problem} &
+\textbf{Årsagsanalyse} & \textbf{Placering i flow} & \textbf{Alvors- grad} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+1 &
+H8: Æstetik og minimalistisk design &
+Søgeresultatsiden returnerer et meget stort antal resultater (>30 synlige) uden tydelig
+rangordning eller filtrering som standard. Reklame- og kampagneprodukter er blandet ind
+imellem de relevante resultater. &
+Systemet tilbyder ikke automatisk filtrering eller begrænsning af resultater. Reklamepladser
+prioriteres visuelt på linje med søgeresultater, hvilket skaber kognitiv overbelastning. &
+Trin 1--3 (søg efter vare) &
+3 \\
+\midrule
+
+2 &
+H3: Brugerkontrol og -frihed; H6: Genkendelse frem for hukommelse &
+Fra ``Gå til kurv''-knappen til brugeren ser sin faktiske kurvoversigt, opstår der mindst
+to mellemliggende skærme/pop-ups (``har du glemt \ldots?'' og krydssalgselementer). Brugeren
+kan ikke hoppe direkte til kurven. &
+Systemet anvender obligatoriske salgsstimulerende trin i checkout-flowet, som ikke kan
+springes over med ét klik. &
+Trin 5 (checkout) &
+2 \\
+\midrule
+
+3 &
+H8: Æstetik og minimalistisk design; H4: Konsistens og standarder &
+Hvert produktkort indeholder 4--6 synlige handlingselementer og bruger op til tre
+baggrundsfarver til at markere tilbud, ``klimasmart''-mærker og kampagner. Det primære
+element (``læg i kurv'') skiller sig ikke tydeligt ud fra sekundære elementer. &
+Produktkortet bærer for mange informationslag uden tydeligt visuelt hierarki. Farvekoderne
+er ikke standardiserede og forstærker visuel støj frem for at reducere den. &
+Trin 1--3 (produktliste) &
+3 \\
+\midrule
+
+4 &
+H1: Synlighed af systemstatus &
+Bekræftelsen af ``lagt i kurv'' vises som en lille animation i øverste højre hjørne i
+ca.\ 1 sekund. Der er ingen tydelig modal, toast-besked eller vedvarende ændring i
+knapstatus, der bekræfter handlingen. &
+Feedback er underimplementeret i forhold til handlingens vigtighed. Brugere der arbejder
+hurtigt risikerer at overse bekræftelsen og lægge varen i kurven to gange. &
+Trin 1--4 (tilføj/fjern vare) &
+2 \\
+
+\bottomrule
+\end{longtable}
+
+\end{document}
