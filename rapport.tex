@@ -10,6 +10,7 @@
 \usepackage{array}
 \usepackage{longtable}
 \usepackage{hyperref}
+\usepackage{tikz}
 
 \geometry{margin=2.5cm}
 
@@ -232,6 +233,170 @@ De centrale fund er:
 
 \newpage
 % =========================================================
+\section*{Spørgsmål 3: Redesign-forslag}
+
+Redesignet tager udgangspunkt i \textbf{problem \#3 fra den heuristiske evaluering}: det
+overfyldte produktkort med mange farver, ikoner og knapper, der skjuler den primære handling
+``Læg i kurv'' i visuel støj (H8, H4). Forslaget er et \emph{forenklet produktkort med
+hover-kurv-interaktion}: kortet viser normalt kun produktbillede, navn og pris; når brugeren
+fører musemarkøren over kortet, fremkommer automatisk et fremtrædende kurv-ikon centralt på
+kortet som den \emph{eneste} synlige handling. Derved adresseres også delvist problem~\#4
+(H1: svag feedback), idet hover-tilstanden erstatter den kortvarige animation med en tydelig
+interaktiv indikation.
+
+\subsection*{(a) Illustrationer af redesign-forslaget}
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[font=\scriptsize, x=1cm, y=1cm]
+  % --- Nuværende produktkort ---
+  \draw[rounded corners=3pt, thick] (0,0) rectangle (3.6,6.4);
+  \fill[gray!25] (0.2,4.0) rectangle (3.4,6.0);
+  \node[gray!60] at (1.8,5.0) {\itshape billede};
+  \fill[red!65]   (0.2,5.55) rectangle (1.05,6.0);
+  \node[white, scale=0.9] at (0.625,5.78) {TILBUD};
+  \fill[green!55] (1.1,5.55)  rectangle (2.65,6.0);
+  \node[scale=0.9] at (1.875,5.78) {KLIMASMART};
+  \node[anchor=west] at (0.2,3.75) {Arla S\o dm\ae lk 1L};
+  \node[anchor=west] at (0.2,3.35) {\textbf{12,50 kr}};
+  \fill[gray!20] (0.2,2.4) rectangle (1.1,2.8);
+  \node at (0.65,2.6) {Gem};
+  \fill[gray!20] (1.15,2.4) rectangle (2.05,2.8);
+  \node at (1.6,2.6) {Info};
+  \fill[yellow!45] (2.1,2.4) rectangle (3.4,2.8);
+  \node at (2.75,2.6) {2/22 kr};
+  \fill[orange!45] (0.2,1.45) rectangle (3.4,2.15);
+  \draw[orange!70]  (0.2,1.45) rectangle (3.4,2.15);
+  \node at (1.8,1.8) {\textbf{L\ae g i kurv}};
+  \node[circle, fill=red!80, text=white, inner sep=1.3pt] at (2.85,5.78) {\textbf{1}};
+  \node[circle, fill=red!80, text=white, inner sep=1.3pt] at (3.2,2.6)   {\textbf{2}};
+  \node[circle, fill=red!80, text=white, inner sep=1.3pt] at (3.2,1.8)   {\textbf{3}};
+  \node[below] at (1.8,-0.1) {\textit{(a) Nuv\ae rende}};
+\end{tikzpicture}%
+\hspace{0.7cm}%
+\begin{tikzpicture}[font=\scriptsize, x=1cm, y=1cm]
+  % --- Redesignet: normal tilstand ---
+  \draw[rounded corners=3pt, thick] (0,0) rectangle (3.6,6.4);
+  \fill[gray!25] (0.2,4.0) rectangle (3.4,6.0);
+  \node[gray!60] at (1.8,5.0) {\itshape billede};
+  \node[anchor=west] at (0.2,3.75) {Arla S\o dm\ae lk 1L};
+  \node[anchor=west] at (0.2,3.35) {\textbf{12,50 kr}};
+  \node[circle, fill=blue!70, text=white, inner sep=1.3pt] at (3.2,5.75) {\textbf{4}};
+  \node[circle, fill=blue!70, text=white, inner sep=1.3pt] at (3.2,3.55) {\textbf{5}};
+  \node[below] at (1.8,-0.1) {\textit{(b) Redesignet -- normal}};
+\end{tikzpicture}%
+\hspace{0.7cm}%
+\begin{tikzpicture}[font=\scriptsize, x=1cm, y=1cm]
+  % --- Redesignet: hover-tilstand ---
+  \draw[rounded corners=3pt, thick] (0,0) rectangle (3.6,6.4);
+  \fill[gray!20] (0.2,4.0) rectangle (3.4,6.0);
+  \node[gray!55] at (1.8,5.0) {\itshape billede};
+  \fill[blue!8]  (0.01,0.01) rectangle (3.59,6.39);
+  \draw[blue!50, thick, rounded corners=3pt] (0,0) rectangle (3.6,6.4);
+  \node[anchor=west, black!55] at (0.2,3.75) {Arla S\o dm\ae lk 1L};
+  \node[anchor=west, black!55] at (0.2,3.35) {\textbf{12,50 kr}};
+  \fill[blue!70, rounded corners=5pt] (0.7,1.35) rectangle (2.9,2.75);
+  \draw[blue!90, thick, rounded corners=5pt] (0.7,1.35) rectangle (2.9,2.75);
+  \node[white, scale=1.05] at (1.8,2.05) {\textbf{+ Kurv}};
+  \node[circle, fill=blue!70, text=white, inner sep=1.3pt] at (3.2,5.5)  {\textbf{6}};
+  \node[circle, fill=blue!70, text=white, inner sep=1.3pt] at (3.2,2.05) {\textbf{7}};
+  \node[below] at (1.8,-0.1) {\textit{(c) Redesignet -- hover}};
+\end{tikzpicture}%
+\caption{Annoterede tegninger af produktkortet. \textbf{(a)}~Nuværende design.
+\textbf{(b)}~Redesignet i normal tilstand. \textbf{(c)}~Redesignet i hover-tilstand.
+Røde markører (1--3): identificerede problemer. Blå markører (4--7): designtiltag.}
+\label{fig:prototyper}
+\end{figure}
+
+\noindent\textbf{Annotationer:}
+\textbf{1}~Farverige kampagnemærker (rød, grøn) øger visuel støj (H8).
+\textbf{2}~Tre sekundære knapper konkurrerer om opmærksomheden (H8/H4).
+\textbf{3}~Primær ``Læg i kurv''-knap fremstår ikke visuelt fremhævet.
+\textbf{4}~Forenklet kort: kun billede, navn og pris -- intet sekundært.
+\textbf{5}~Klart visuelt hierarki; reducerer kognitiv overbelastning.
+\textbf{6}~Hover aktiverer blå indramning som interaktivitetssignal (H1).
+\textbf{7}~Fremtrædende kurv-knap vises ved musemarkørens position (Fitts' lov).
+
+% ---------------------------------------------------------
+\subsection*{(b) Begrundelse af redesign-forslaget med designprincipper}
+
+\textbf{Hick's lov og minimalistisk design (tænkning, H8):}
+Ifølge Hick's lov stiger valgreaktionstiden logaritmisk med antallet af valgmuligheder
+(Hornbæk et al., 2025, kap.\ 8). Det nuværende produktkort præsenterer 5--7 simultane
+elementer. Det redesignede kort reducerer dette til ét valg i hover-tilstanden, hvilket
+direkte sænker den kognitive belastning og reaktionstiden. Dette er i overensstemmelse med
+Nielsens H8 om at fjerne irrelevant information og distraherende elementer fra interfacet.
+
+\textbf{Fitts' lov og motorisk effektivitet (perception):}
+Fitts' lov forudsiger, at pegetid afhænger af målafstand og -størrelse
+($t_P \propto \log_2(2D/W)$; Hornbæk et al., 2025, kap.\ 7). Det nuværende interface kræver
+to separate pointingoperationer: én til kortet og én til den lille ``Læg i kurv''-knap.
+Hover-interaktionen eliminerer den anden operation, da kurv-knappen fremkommer \emph{ved}
+musemarkørens aktuelle position --- et stort, let tilgængeligt mål. KLM-analysen
+kvantificerer besparelsen (Bilag~B og~C).
+
+\textbf{Affordance og visuel hierarki (brugergrænseflader):}
+Teorien om visuelle hierarkier tilsiger, at det primære interaktionselement bør dominere
+visuelt (Hornbæk et al., 2025, kap.\ 14). I redesignet skjules al sekundær information i
+normaltilstanden; hover-tilstanden synliggør \emph{én} tydelig handling. Kurv-knappens
+blå farve, store størrelse og centrale placering udgør en klar \emph{affordance}
+(Gibson, 1977; jf.\ Hornbæk et al., 2025, kap.\ 13): dens fremtræden kommunikerer
+entydigt dens funktion uden yderligere forklaring.
+
+% ---------------------------------------------------------
+\subsection*{(c) KLM-analyse}
+
+KLM-analysen er udført for opgaven \emph{``søg efter `mælk' og læg én mælk i kurven''}
+startende fra Nemlig.coms forside. Fuldstændige analysetabeller fremgår af Bilag~B
+(nuværende) og Bilag~C (redesign). Opsummering af komponent-tider:
+
+\begin{center}
+\begin{tabular}{lrr}
+\toprule
+& \textbf{Nuværende} & \textbf{Redesign} \\
+\midrule
+$t_K$ (tastetryk)  & 1{,}80\,s & 1{,}80\,s \\
+$t_P$ (pointing)   & 3{,}30\,s & 2{,}20\,s \\
+$t_H$ (homing)     & 1{,}20\,s & 1{,}20\,s \\
+$t_M$ (mentalt)    & 4{,}80\,s & 3{,}60\,s \\
+$t_R$ (system)     & 0{,}50\,s & 0{,}50\,s \\
+\midrule
+\textbf{Total}     & \textbf{11{,}60\,s} & \textbf{9{,}30\,s} \\
+\bottomrule
+\end{tabular}
+\end{center}
+
+Redesignet er \textbf{2{,}30\,s hurtigere} (ca.\ 20\,\%) end den nuværende applikation.
+Besparelsen stammer fra eliminering af ét M-trin ($-1{,}20$\,s: brugeren behøver ikke
+lede visuelt efter ``Læg i kurv''-knappen) og ét P-trin ($-1{,}10$\,s: kurv-knappen
+fremkommer ved musemarkørens aktuelle position, så der kræves ingen ekstra pegning).
+
+% ---------------------------------------------------------
+\subsection*{(d) Beskrivelse af evaluering}
+
+For at vurdere om KLM-resultaterne er gyldige, foreslår jeg et \textbf{kontrolleret
+laboratorieforsøg} med \textbf{12--15 erfarne webshoppere} (mindst ét online
+dagligvareindkøb pr.\ måned, screenet via spørgeskema). KLM antager ekspertydeevne;
+deltagerne gennemfører én øvetrial per interface for at tilnærme sig dette.
+
+\textbf{Design:} Within-subjects med counterbalanced rækkefølge (AB/BA), så halvdelen
+starter med nuværende og halvdelen med redesignet. Ordenseffekter kontrolleres herved.
+
+\textbf{Opgave og måling:} Præcis den KLM-analyserede opgave: ``Søg efter `mælk' og læg
+én mælk i kurven'' (start: forsiden). Tid måles fra opgaveinstruktion til klik på
+kurv-knappen. Fejlbehæftede trials ekskluderes, da KLM antager fejlfri adfærd.
+
+\textbf{Analyse og validitetskriterium:} Observerede tider sammenlignes med
+KLM-for\-ud\-si\-gel\-ser\-ne (11{,}60\,s og 9{,}30\,s) via \emph{one-sample t-test}. KLM betragtes
+som valid, hvis observerede gennemsnit falder inden for $\pm5$\,s af prediktion (jf.\
+Hornbæk et al., 2025, s.\ 736). Forskel mellem interfaces testes med \emph{paired t-test}.
+En central trussel mod validiteten er KLMs antagelse om eksperter og fejlfri adfærd: de
+fleste brugere er ikke eksperter, og observerede tider vil sandsynligvis overstige
+predik\-tionerne systematisk. Den \emph{relative} besparelse (2{,}30\,s) forventes dog
+robust, da antagelserne gælder begge interfaces.
+
+\newpage
+% =========================================================
 \appendix
 \section*{Bilag A: Problemliste fra heuristisk evaluering af Nemlig.com}
 
@@ -305,5 +470,102 @@ Trin 1--4 (tilføj/fjern vare) &
 
 \bottomrule
 \end{longtable}
+
+\newpage
+% =========================================================
+\section*{Bilag B: KLM-analyse -- Nuværende applikation (Nemlig.com)}
+
+\noindent\textbf{Opgave:} ``Søg efter `mælk' og læg én mælk i kurven'' (start: Nemlig.coms forside).\\
+\textbf{Brugertype:} Øvet bruger (KLM-antagelse).
+$t_K = 0{,}28$\,s (gennemsnit);\enspace $t_P = 1{,}10$\,s;\enspace
+$t_H = 0{,}40$\,s;\enspace $t_M = 1{,}20$\,s.
+
+\vspace{0.5em}
+\begin{longtable}{>{\raggedright\arraybackslash}p{8.5cm}
+                  >{\raggedright\arraybackslash}p{3.0cm}
+                  >{\centering\arraybackslash}p{2.0cm}}
+\toprule
+\textbf{Handling} & \textbf{KLM-operator} & \textbf{Tid (s)} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Handling} & \textbf{KLM-operator} & \textbf{Tid (s)} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Initiér opgave: beslut at søge via søgefeltet & M: initiering & 1,20 \\
+Flyt hånd fra tastatur til mus & H: mus & 0,40 \\
+Peg på søgefelt øverst på siden & P: felt & 1,10 \\
+Klik på søgefelt & K: klik & 0,20 \\
+Flyt hånd fra mus til tastatur & H: tastatur & 0,40 \\
+Skriv ``mælk'' (4\,$\times$\,0,28\,s) & K: skriv & 1,12 \\
+Tryk Enter & K: enter & 0,28 \\
+Vent på søgeresultater & R: system & 0,50 \\
+Scan søgeresultater; find produkt (reklamer og kampagner distraherer) & M: visuel søgning & 1,20 \\
+Flyt hånd fra tastatur til mus & H: mus & 0,40 \\
+Peg på produktkortet & P: produktkort & 1,10 \\
+Find ``Læg i kurv''-knap visuelt (4--6 synlige knapper på kortet) & M: visuel søgning & 1,20 \\
+Peg på ``Læg i kurv''-knap & P: knap & 1,10 \\
+Klik på ``Læg i kurv'' & K: klik & 0,20 \\
+Verificér at varen er lagt i kurven (kortvarig animation øverst) & M: verificer & 1,20 \\
+\midrule
+\multicolumn{2}{l}{$t_K = 1{,}80$\,s;\; $t_P = 3{,}30$\,s;\; $t_H = 1{,}20$\,s;\;
+  $t_M = 4{,}80$\,s;\; $t_R = 0{,}50$\,s} & \\
+\textbf{Total} & & \textbf{11,60} \\
+
+\bottomrule
+\end{longtable}
+
+\newpage
+% =========================================================
+\section*{Bilag C: KLM-analyse -- Redesignet applikation}
+
+\noindent\textbf{Opgave:} ``Søg efter `mælk' og læg én mælk i kurven'' (start: Nemlig.coms forside).\\
+\textbf{Redesign:} Forenklet produktkort med hover-kurv-interaktion.\\
+\textbf{Brugertype:} Øvet bruger.
+$t_K = 0{,}28$\,s;\enspace $t_P = 1{,}10$\,s;\enspace
+$t_H = 0{,}40$\,s;\enspace $t_M = 1{,}20$\,s.
+
+\vspace{0.5em}
+\begin{longtable}{>{\raggedright\arraybackslash}p{8.5cm}
+                  >{\raggedright\arraybackslash}p{3.0cm}
+                  >{\centering\arraybackslash}p{2.0cm}}
+\toprule
+\textbf{Handling} & \textbf{KLM-operator} & \textbf{Tid (s)} \\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Handling} & \textbf{KLM-operator} & \textbf{Tid (s)} \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+
+Initiér opgave: beslut at søge via søgefeltet & M: initiering & 1,20 \\
+Flyt hånd fra tastatur til mus & H: mus & 0,40 \\
+Peg på søgefelt øverst på siden & P: felt & 1,10 \\
+Klik på søgefelt & K: klik & 0,20 \\
+Flyt hånd fra mus til tastatur & H: tastatur & 0,40 \\
+Skriv ``mælk'' (4\,$\times$\,0,28\,s) & K: skriv & 1,12 \\
+Tryk Enter & K: enter & 0,28 \\
+Vent på søgeresultater & R: system & 0,50 \\
+Scan forenklede søgeresultater; find produkt (ingen reklamer/badges) & M: visuel søgning & 1,20 \\
+Flyt hånd fra tastatur til mus & H: mus & 0,40 \\
+Peg på/hover over produktkortet; kurv-ikon fremkommer automatisk & P: produktkort & 1,10 \\
+Klik på kurv-ikonet & K: klik & 0,20 \\
+Verificér at varen er lagt i kurven (tydelig hover-feedback) & M: verificer & 1,20 \\
+\midrule
+\multicolumn{2}{l}{$t_K = 1{,}80$\,s;\; $t_P = 2{,}20$\,s;\; $t_H = 1{,}20$\,s;\;
+  $t_M = 3{,}60$\,s;\; $t_R = 0{,}50$\,s} & \\
+\textbf{Total} & & \textbf{9,30} \\
+
+\bottomrule
+\end{longtable}
+
+\noindent Redesignet sparer \textbf{2{,}30\,s} ($\approx$20\,\%) i forhold til den nuværende
+applikation ved at eliminere ét M-trin (find knap: $-1{,}20$\,s) og ét P-trin
+(peg på knap: $-1{,}10$\,s).
 
 \end{document}
