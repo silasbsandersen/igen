@@ -378,6 +378,157 @@ En central trussel mod validiteten er KLMs antagelse om eksperter og fejlfri adf
 
 \newpage
 % =========================================================
+\section*{Spørgsmål 4: Deceptive patterns i Nemlig.com}
+
+\subsection*{(a) Tre eksempler på deceptive patterns}
+
+Gray et al.\ (2018) definerer deceptive patterns som situationer, hvor designere bruger viden
+om menneskelig adfærd til at implementere vildledende funktionalitet, der ikke er i brugerens
+interesse (s.\ 1). På side 4 i samme artikel opstilles 12 typer. Nedenfor beskrives tre
+eksempler fra Nemlig.com og relateres til disse typer.
+
+\textbf{Eksempel 1: ``Sneak into Basket'' (tilføjelse til kurv uden eksplicit samtykke)}
+
+Når brugeren klikker ``Læg i kurv'' på et produkt, viderestilles de ikke direkte til kurven.
+I stedet vises to mellemliggende sider: ``Vi vil lige huske dig på\ldots'' og
+``Frugt og grønt til ugen'', der præsenterer yderligere produktforslag. Siderne er designet
+til at ligne en naturlig del af checkout-flowet, og det primære visuelle element er en
+fremtrædende ``Tilføj''-knap for ekstra varer frem for en neutral ``Fortsæt til kurv''-knap.
+Brugeren skal aktivt lede efter muligheden for at springe over.
+
+Dette er et eksempel på \emph{Sneak into Basket} (Gray et al., 2018, s.\ 4): systemet
+udnytter brugerens momentum i opgaveflowet til at indsætte yderligere valg, der er designet
+til at fremkalde tilføjelser snarere end at støtte brugerens oprindelige intention.
+
+\begin{figure}[h!]
+\centering
+\begin{tikzpicture}[font=\small, x=1cm, y=1cm]
+  % Flowdiagram: tre bokse med pile
+  \draw[rounded corners=4pt, thick] (0,0) rectangle (3.2,1.2);
+  \node[align=center] at (1.6,0.6) {Klik\\``Læg i kurv''};
+  \draw[->, thick] (3.2,0.6) -- (4.0,0.6);
+  \draw[rounded corners=4pt, thick, red!60] (4.0,0) rectangle (7.8,1.2);
+  \node[align=center, red!70] at (5.9,0.6) {``Vi vil lige huske\\dig på\ldots'' (uopfordret)};
+  \draw[->, thick] (7.8,0.6) -- (8.6,0.6);
+  \draw[rounded corners=4pt, thick] (8.6,0) rectangle (12.0,1.2);
+  \node[align=center] at (10.3,0.6) {Faktisk kurv\\(mål for brugeren)};
+\end{tikzpicture}
+\caption{Sneak into Basket: brugeren møder uopfordrede mersalgssider (rød boks) inden
+  kurven vises.}
+\label{fig:sneak}
+\end{figure}
+
+\textbf{Eksempel 2: ``Hidden Costs'' (skjulte omkostninger)}
+
+Under browsing og produktsiden viser Nemlig.com en pris pr.\ vare, men leveringsgebyr,
+servicetillæg og evt.\ pose-tillæg fremgår ikke konsekvent i produktvisningen. Disse
+omkostninger dukker først op sent i checkout-processen -- på betalingssiden -- og kan samlet
+beløbe sig til 30--60~kr.\ oven i den viste pris. På det tidspunkt har brugeren allerede
+investeret tid og mental energi i at sammensætte kurven og vælge leveringstidspunkt, hvilket
+skaber et psykologisk pres for at gennemføre købet (sunk cost).
+
+Dette svarer til \emph{Hidden Costs} i Gray et al.\ (2018, s.\ 4): reelle omkostninger
+skjules eller nedtones, indtil brugeren er dybt inde i transaktionsflowet og det er
+omstændeligt at fortryde.
+
+\textbf{Eksempel 3: ``Disguised Ad / Bait and Switch'' (skjult reklame og lokkemad)}
+
+På Nemlig.coms forside vises en fremtrædende banner med teksten \emph{``Få 100 kr.\ til at
+handle for''} med en markant knap. Designet og placeringen signalerer, at dette er en simpel
+bonus, der aktiveres med ét klik -- som en rabatkode. Klikker brugeren på knappen, ledes de
+imidlertid til en side, der kræver oprettelse af et abonnement (Nemlig.com~Plus) for at
+modtage beløbet.
+
+Dette kombinerer \emph{Bait and Switch} og \emph{Disguised Ad} fra Gray et al.\ (2018, s.\
+4): tilbuddet lokker med en attraktiv fordel (100~kr.), men fører til et produkt/en forpligtelse
+(abonnement), brugeren ikke forventede. Den reklamelignende banner er designet til at se ud
+som et neutralt tilbud, ikke som en betalt/kommerciel opfordring til tilmelding.
+
+\subsection*{(b) Konsekvenser for brugerne}
+
+De tre deceptive patterns er direkte skadelige for de kvaliteter, der i Spørgsmål~1(b) blev
+prioriteret som vigtigst: \emph{effektivitet}, \emph{fejlforebyggelse og recovery} samt
+\emph{oplevet kontrol og tillid}.
+
+\textit{Effektivitet:} Sneak into Basket tvinger brugeren igennem op til to ekstra sider ved
+hvert varetilføj. For en travl børnefamilie, der har en stor indkøbsliste, ganger dette sig
+hurtigt op til en markant forøgelse af samlet tid på opgaven -- præcis det aspekt, der var
+højest prioriteret i Spørgsmål~1(b).
+
+\textit{Fejlforebyggelse og recovery:} Hidden Costs skader brugerens mulighed for at sammenligne
+og vurdere reelle omkostninger tidligt i processen. Fejlen (at have undervurderet totalprisen)
+opdages meget sent, og recovery kræver at afbryde et næsten-fuldført køb og starte forfra --
+en høj pris for den information, der burde have fremgået fra starten.
+
+\textit{Oplevet kontrol og tillid:} Alle tre patterns underminerer brugerens oplevelse af
+kontrol. Gray et al.\ (2018) understreger, at deceptive patterns netop udnytter ``the desires
+of end users'' (s.\ 1) -- altså bruger kendskab til brugerens mål (spare penge, handle
+effektivt) mod dem. For brugere, der opdager mønstrene, er det sandsynligt, at tilliden til
+Nemlig.com som platform reduceres, hvilket på sigt kan føre til churn. For brugere, der ikke
+opdager dem, sker der en usynlig overflytning af værdi fra bruger til platform (gennem mersalg,
+uventede gebyrer og abonnementer), uden informeret samtykke -- hvilket udgør et etisk problem
+ud over en blot designfejl.
+
+\subsection*{(c) Sammenligning: adfærdsændring og deceptive patterns}
+
+Lærebogen (Hornbæk et al., 2025) beskriver \emph{persuasive technology} og teknikker til
+adfærdsændring som bl.a.\ \emph{nudging}, sociale normer, feedback-sløjfer og tilpasning af
+standardvalg (defaults). Disse teknikker bruges til at understøtte brugerens egne mål og
+til at fremme ønsket adfærd -- fx mere sund kost, fysisk aktivitet eller energibesparelse.
+
+\textbf{Lighed:} Både persuasive design og deceptive patterns bygger på den samme
+psykologiske viden om menneskelig adfærd, herunder status quo-bias, framing-effekter og
+sunk cost-effekten. Et eksempel er brugen af \emph{defaults}: persuasive design kan sætte
+``grøn levering'' som standard leveringsform (et miljøvenligt nudge til gavn for brugeren og
+samfundet), mens deceptive patterns kan sætte et betalt nyhedsbrev som standard ved tilmelding
+(til gavn for platformen). Mekanismen er identisk; intentionen og konsekvensen er modsatrettede.
+
+\textbf{Forskel:} Den afgørende forskel er brugerens interesse. Hornbæk et al.\ (2025)
+beskriver adfærdsændringsteknikker som legitime, når de \emph{støtter} brugerens egne erklærede
+mål og giver brugeren en reel mulighed for at afvise eller ændre dem (autonomibevarelse).
+Gray et al.\ (2018) definerer netop deceptive patterns ud fra, at de \emph{ikke} er i
+brugerens interesse (s.\ 1). Hidden Costs er et konkret eksempel på, at teknikkerne adskiller
+sig: et ægte nudge ville fremhæve alle omkostninger tidligt for at understøtte en informeret
+beslutning; Hidden Costs skjuler dem bevidst for at reducere fravalg -- det modsatte af
+informeret autonomi.
+
+\subsection*{(d) Refleksion: at blive bedt om at anvende deceptive patterns som udvikler}
+
+Hvis jeg som udvikler blev bedt om at implementere deceptive patterns, ville jeg opleve et
+klart etisk dilemma. Gray et al.\ (2018) viser, at designere, der implementerer sådanne
+mønstre, aktivt bruger deres faglige viden til at skade brugerne -- det er ikke en neutral
+designbeslutning, men et informeret valg om at handle i platformens snarere end brugerens
+interesse (s.\ 1).
+
+Fra lærebogen ved jeg, at design er en praksis med reelle konsekvenser for menneskers
+handlemuligheder og velvære (Hornbæk et al., 2025). Persuasive technology er kun etisk
+forsvarlig, når det respekterer brugerautonomi og understøtter brugerens egne mål (Hornbæk
+et al., 2025, kap.\ 19). Et krav om at anvende Hidden Costs eller Sneak into Basket er i
+direkte modstrid med dette princip.
+
+I praksis ville jeg gøre følgende:
+\begin{enumerate}[leftmargin=*,itemsep=0.2em]
+  \item \textbf{Undersøge intentionen:} Forespørgslen kan stamme fra forretningsmæssigt pres
+        snarere end bevidst ond vilje. Jeg ville forklare, hvad deceptive patterns er, og
+        dokumentere de langsigtede risici: tab af brugertillid, juridiske risici (bl.a.\ GDPR
+        og EU-forbrugerbeskyttelsesregler) og omdømmeskade.
+  \item \textbf{Foreslå alternativer:} I stedet for Hidden Costs ville jeg foreslå tydelig
+        pris\-visning med gebyrer fremhævet tidligt -- dette \emph{øger} konverteringen hos
+        brugere, der alligevel vil købe, og reducerer frustration og returns. I stedet for
+        Sneak into Basket ville jeg foreslå opt-in mersalg med én tydelig ``Nej tak''-knap.
+  \item \textbf{Sætte en grænse:} Hvis virksomheden fastholdt kravet om at vildlede brugerne
+        efter en informeret diskussion, ville jeg nægte at implementere det og om nødvendigt
+        eskalere til en faglig eller juridisk instans. Hornbæk et al.\ (2025) understreger, at
+        designere har et medansvar for de systemer, de er med til at skabe -- ansvaret ophører
+        ikke, fordi beslutningen tages ``et andet sted i organisationen''.
+\end{enumerate}
+
+Sammenfattende: deceptive patterns er ikke blot et designproblem, men et etisk problem, og
+som (fremtidig) professionel designer anser jeg det som en kernekompetence at kunne
+identificere, afvise og erstatte dem med ansvarlige alternativer.
+
+\newpage
+% =========================================================
 \appendix
 \section*{Bilag A: Problemliste fra heuristisk evaluering af Nemlig.com}
 
