@@ -3,6 +3,7 @@ config:
   layout: elk
 ---
 classDiagram
+    direction LR
     class IMovementStrategy {
         <<interface>>
         +Scale(float factor)
